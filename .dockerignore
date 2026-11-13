@@ -1,0 +1,15 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.git/
+.github/
+data/raw/
+data/processed/
+data/uploads/
+data/outputs/
+data/results/
+frontend/node_modules/
+frontend/dist/
+.pytest_cache/
+tests/

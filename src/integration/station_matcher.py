@@ -111,7 +111,16 @@ class StationMatcher:
     def _load(self) -> None:
         path = Path(self.config.data_path)
         if not path.exists():
-            raise FileNotFoundError(f"Dataset not found: {path}")
+            sample_path = Path("data/sample/delhi_multimodal_sample.csv")
+            if sample_path.exists():
+                logger.warning(
+                    "Primary dataset not found at %s. Falling back to sample dataset at %s",
+                    path,
+                    sample_path,
+                )
+                path = sample_path
+            else:
+                raise FileNotFoundError(f"Dataset not found: {path}")
 
         logger.info("Loading station dataset from %s", path)
         df = pd.read_csv(path, low_memory=False)

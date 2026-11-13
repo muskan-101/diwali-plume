@@ -21,4 +21,5 @@ geopandas
 rasterio
 shapely
 flask
+gunicorn
 pytest

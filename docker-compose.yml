@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  diwali-plume:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: diwali-plume
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+    restart: unless-stopped

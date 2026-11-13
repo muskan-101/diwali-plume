@@ -135,9 +135,19 @@ class ForecastEngine:
         logger.info("Loaded %d features from %s", len(self._features), self.features_path)
 
     def _load_data(self) -> None:
-        if not self.data_path.exists():
-            raise FileNotFoundError(f"Dataset not found: {self.data_path}")
-        df = pd.read_csv(self.data_path, low_memory=False)
+        path = self.data_path
+        if not path.exists():
+            sample_path = Path("data/sample/delhi_multimodal_sample.csv")
+            if sample_path.exists():
+                logger.warning(
+                    "Primary dataset not found at %s. Falling back to sample dataset at %s",
+                    path,
+                    sample_path,
+                )
+                path = sample_path
+            else:
+                raise FileNotFoundError(f"Dataset not found: {self.data_path}")
+        df = pd.read_csv(path, low_memory=False)
         df.columns = df.columns.str.strip().str.lower()
 
         # Same alias resolution as baseline.py and station_matcher.py.
@@ -420,4 +430,4 @@ class ForecastEngine:
 
     @property
     def dataset_available(self) -> bool:
-        return self.data_path.exists()
+        return self.data_path.exists() or Path("data/sample/delhi_multimodal_sample.csv").exists()
