@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diwali Plume — Vision-Led Environmental Intelligence System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card-bg: #141b26;
+      --card-border: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --accent: #f97316;
+      --success: #22c55e;
+      --warning: #eab308;
+      --danger: #ef4444;
+      --severe: #dc2626;
+      --radius: 10px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-primary { background: rgba(56, 189, 248, 0.15); color: var(--primary); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-severe { background: rgba(220, 38, 38, 0.2); color: #fca5a5; border: 1px solid rgba(220, 38, 38, 0.4); }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      background: #0f1520;
+      color: var(--text);
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    button.btn-primary {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      border: none;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 12px;
+      transition: opacity 0.2s;
+    }
+
+    button.btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .metric-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 4px;
+    }
+
+    .video-container {
+      width: 100%;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    video {
+      width: 100%;
+      max-height: 400px;
+      display: block;
+    }
+
+    .trend-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    .horizon-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .horizon-box {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .precaution-item {
+      padding: 10px 14px;
+      background: rgba(15, 23, 42, 0.5);
+      border-left: 3px solid var(--primary);
+      border-radius: 4px;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .tag-severe { border-left-color: var(--severe); }
+    .tag-warning { border-left-color: var(--warning); }
+
+    .caveat-banner {
+      background: rgba(234, 179, 8, 0.08);
+      border: 1px solid rgba(234, 179, 8, 0.25);
+      color: #fde047;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-top: 16px;
+    }
+
+    .loader {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <h1 style="font-size: 18px; font-weight: 700; letter-spacing: -0.5px;">DIWALI PLUME</h1>
+      <span class="badge badge-primary">Multimodal Environmental Intelligence</span>
+      <span class="badge badge-severe">Delhi-NCR</span>
+    </div>
+    <div style="font-size: 12px; color: var(--text-muted);">
+      Stage A Research System &middot; CPCB NAQI Compliant
+    </div>
+  </header>
+
+  <div class="grid-container">
+    <!-- Left Column: Controls & Video Upload -->
+    <div>
+      <div class="card">
+        <div class="card-title">Analyze Video & Location</div>
+        <form id="analyzeForm">
+          <div class="form-group">
+            <label>Upload Delhi Video (MP4/AVI/MOV)</label>
+            <input type="file" id="videoInput" name="video" accept=".mp4,.avi,.mov,.mkv" required>
+          </div>
+          <div class="form-group">
+            <label>Recording Datetime (ISO-8601 with TZ)</label>
+            <input type="text" id="dtInput" name="recording_datetime" value="2025-10-01T12:00:00+05:30" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group">
+              <label>Latitude</label>
+              <input type="number" step="0.0001" id="latInput" name="latitude" value="28.5633" required>
+            </div>
+            <div class="form-group">
+              <label>Longitude</label>
+              <input type="number" step="0.0001" id="lonInput" name="longitude" value="77.1869" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Analysis Mode</label>
+            <select name="mode" id="modeInput">
+              <option value="historical_replay">Historical Replay (ERA5 + Clean AQI)</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary" id="submitBtn">Run Multimodal Analysis</button>
+        </form>
+        <div class="loader" id="loader">Processing video frames & extracting telemetry...</div>
+      </div>
+
+      <!-- Station Provenance & Fallback Card -->
+      <div class="card">
+        <div class="card-title">Station Provenance</div>
+        <div id="stationInfo" style="font-size: 13px; color: var(--text-muted);">
+          Awaiting input analysis...
+        </div>
+      </div>
+
+      <!-- Precaution Recommendations Card -->
+      <div class="card">
+        <div class="card-title">Actionable Precautions</div>
+        <div id="precautionList" style="font-size: 13px;">
+          Submit video to generate evidence-based health guidance.
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Visual Intelligence & Telemetry -->
+    <div>
+      <!-- CV Telemetry Header -->
+      <div class="card">
+        <div class="card-title">
+          <span>Vision Intelligence Telemetry</span>
+          <span id="eventBadge" class="badge badge-primary">Awaiting Video</span>
+        </div>
+        <div class="metric-grid">
+          <div class="metric-box">
+            <div class="metric-label">Plume Coverage</div>
+            <div class="metric-value" id="valPlumeCov">-- %</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Smoke Detections</div>
+            <div class="metric-value" id="valSmokeDet">--</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Haze Severity</div>
+            <div class="metric-value" id="valHaze" style="font-size: 15px;">--</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Scene Clarity</div>
+            <div class="metric-value" id="valClarity">-- / 100</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Apparent Flow</div>
+            <div class="metric-value" id="valMotion">-- px/s</div>
+          </div>
+        </div>
+
+        <div class="video-container" id="videoContainer" style="display: none;">
+          <video id="annotatedVideo" controls></video>
+        </div>
+
+        <div id="trendPlotContainer" style="display: none;">
+          <label style="margin-bottom: 8px;">Multi-Signal Optical & Photometric Timeline</label>
+          <img id="trendImg" class="trend-img" src="" alt="Trend Timeline">
+        </div>
+      </div>
+
+      <!-- Air Quality & Multi-Horizon Forecast Card -->
+      <div class="card">
+        <div class="card-title">
+          <span>Air Quality & Multi-Horizon Predictions</span>
+          <span id="aqiBadge" class="badge badge-severe">CPCB Sub-Index</span>
+        </div>
+        <div class="metric-grid">
+          <div class="metric-box">
+            <div class="metric-label">Measured PM2.5</div>
+            <div class="metric-value" id="valMeasuredPM">-- µg/m³</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Prominent Sub-Index</div>
+            <div class="metric-value" id="valSubIdx">--</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Forecast PM2.5 (6h)</div>
+            <div class="metric-value" id="valForecast6h" style="color: var(--primary);">-- µg/m³</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Episode Remaining</div>
+            <div class="metric-value" id="valEpisodeDur">-- hrs</div>
+          </div>
+        </div>
+
+        <label style="margin-bottom: 8px;">Multi-Horizon PM2.5 Projections (µg/m³)</label>
+        <div class="horizon-cards" id="horizonGrid">
+          <div class="horizon-box">
+            <div class="metric-label">+6 Hours</div>
+            <div class="metric-value" id="h6Val">--</div>
+          </div>
+          <div class="horizon-box">
+            <div class="metric-label">+12 Hours</div>
+            <div class="metric-value" id="h12Val">--</div>
+          </div>
+          <div class="horizon-box">
+            <div class="metric-label">+24 Hours</div>
+            <div class="metric-value" id="h24Val">--</div>
+          </div>
+          <div class="horizon-box">
+            <div class="metric-label">+48 Hours</div>
+            <div class="metric-value" id="h48Val">--</div>
+          </div>
+        </div>
+
+        <div class="caveat-banner" id="caveatBanner">
+          Notice: Visual smoke detections indicate optical presence, not mass concentration. CPCB official AQI requires 3+ criteria parameters. 6-hour forecast uses XGBoost baseline on historical ERA5 weather.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('analyzeForm');
+    const loader = document.getElementById('loader');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loader.style.display = 'block';
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+
+      try {
+        const resp = await fetch('/analyze', {
+          method: 'POST',
+          body: formData,
+        });
+        const data = await resp.json();
+
+        if (!resp.ok) {
+          alert('Error: ' + (data.error || 'Analysis failed'));
+          return;
+        }
+
+        renderResults(data);
+      } catch (err) {
+        alert('Request failed: ' + err.message);
+      } finally {
+        loader.style.display = 'none';
+        submitBtn.disabled = false;
+      }
+    });
+
+    function renderResults(data) {
+      console.log('Result payload:', data);
+      const va = data.video_analysis || {};
+      const ns = data.nearest_station || {};
+      const fs = data.forecast_station || {};
+      const aqi = data.air_quality_cpcb || {};
+      const fc = data.pm25_forecast_6h || {};
+      const mh = data.multi_horizon_forecast || {};
+      const ep = data.pollution_episode || {};
+      const prec = data.precaution_advisory || {};
+
+      // CV Telemetry
+      document.getElementById('valPlumeCov').innerText = (va.max_plume_coverage_pct || 0).toFixed(1) + ' %';
+      document.getElementById('valSmokeDet').innerText = va.smoke_detection_count || 0;
+      document.getElementById('valHaze').innerText = va.haze_severity || 'Unknown';
+      document.getElementById('valClarity').innerText = (va.scene_clarity_index || 0).toFixed(0) + ' / 100';
+      document.getElementById('valMotion').innerText = (va.apparent_motion_speed || 0).toFixed(1) + ' px/s';
+      document.getElementById('eventBadge').innerText = (va.primary_event_classification || 'Completed').replace(/_/g, ' ').toUpperCase();
+
+      // Video & Trend Image
+      if (va.annotated_video_path) {
+        const vid = document.getElementById('annotatedVideo');
+        vid.src = va.annotated_video_path;
+        document.getElementById('videoContainer').style.display = 'block';
+      }
+      if (va.visual_trends_graph_path) {
+        const img = document.getElementById('trendImg');
+        img.src = va.visual_trends_graph_path;
+        document.getElementById('trendPlotContainer').style.display = 'block';
+      }
+
+      // Air Quality & Forecast
+      document.getElementById('valMeasuredPM').innerText = (ns.pm25_ugm3 ? ns.pm25_ugm3.toFixed(1) : '--') + ' µg/m³';
+      document.getElementById('valSubIdx').innerText = aqi.aqi || '--';
+      document.getElementById('valForecast6h').innerText = (fc.forecast_pm25_ugm3 ? fc.forecast_pm25_ugm3.toFixed(1) : '--') + ' µg/m³';
+      document.getElementById('valEpisodeDur').innerText = (ep.expected_remaining_hours ? ep.expected_remaining_hours.toFixed(1) : '--') + ' hrs';
+
+      // Horizons
+      if (mh.horizons) {
+        if (mh.horizons['6']) document.getElementById('h6Val').innerText = mh.horizons['6'].predicted_pm25_ugm3.toFixed(1);
+        if (mh.horizons['12']) document.getElementById('h12Val').innerText = mh.horizons['12'].predicted_pm25_ugm3.toFixed(1);
+        if (mh.horizons['24']) document.getElementById('h24Val').innerText = mh.horizons['24'].predicted_pm25_ugm3.toFixed(1);
+        if (mh.horizons['48']) document.getElementById('h48Val').innerText = mh.horizons['48'].predicted_pm25_ugm3.toFixed(1);
+      }
+
+      // Station Info
+      let stHtml = `<div><strong>Nearest Measured:</strong> ${ns.station_name || 'None'} (${ns.distance_km ? ns.distance_km.toFixed(2) : '--'} km)</div>`;
+      if (fs.is_fallback) {
+        stHtml += `<div style="margin-top: 6px; color: #fbbf24;"><strong>Forecast Station:</strong> ${fs.station_name} (${fs.distance_km ? fs.distance_km.toFixed(2) : '--'} km) [Fallback]</div>`;
+        stHtml += `<div style="font-size: 11px; margin-top: 4px;">${fs.fallback_note || ''}</div>`;
+      }
+      document.getElementById('stationInfo').innerHTML = stHtml;
+
+      // Precautions
+      let precHtml = `<div style="font-weight: 600; margin-bottom: 8px; color: var(--primary);">${prec.alert_level || 'STANDARD_ADVISORY'}</div>`;
+      if (prec.general_advice) {
+        prec.general_advice.forEach(item => {
+          precHtml += `<div class="precaution-item">${item}</div>`;
+        });
+      }
+      if (prec.outdoor_guidance) {
+        precHtml += `<div class="precaution-item tag-severe"><strong>Outdoor Exertion:</strong> ${prec.outdoor_guidance}</div>`;
+      }
+      if (prec.respiratory_protection) {
+        precHtml += `<div class="precaution-item tag-warning"><strong>Respiratory Protection:</strong> ${prec.respiratory_protection}</div>`;
+      }
+      document.getElementById('precautionList').innerHTML = precHtml;
+    }
+  </script>
+</body>
+</html>
