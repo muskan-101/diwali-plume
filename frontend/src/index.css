@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #0B1220;
+  color: #EDF3FA;
+}
+
+/* Custom Bloomberg/Linear scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080E19;
+}
+::-webkit-scrollbar-thumb {
+  background: #243247;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #36C5F0;
+}
+
+.terminal-border {
+  border: 1px solid #243247;
+}
+
+.terminal-card {
+  background-color: #121D2D;
+  border: 1px solid #243247;
+  border-radius: 8px;
+}
+
+.terminal-card:hover {
+  border-color: #334460;
+}
+
+.badge-pulse {
+  animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
